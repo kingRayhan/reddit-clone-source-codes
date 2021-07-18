@@ -14,7 +14,7 @@ class AuthController extends Controller
         $user = User::create([
            'username' => $request->username,
            'email' => $request->email,
-           'password' => bcrypt($request->password)
+           'password' => $request->password
         ]);
 
         // mass assignment
