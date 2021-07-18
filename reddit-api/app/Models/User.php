@@ -20,6 +20,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'api_token'
     ];
 
     /**
@@ -30,6 +31,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'api_token'
     ];
 
     /**
@@ -45,18 +47,6 @@ class User extends Authenticatable
     public function setPasswordAttribute($TextPassword)
     {
         $this->attributes['password'] = bcrypt($TextPassword);
-    }
-
-    public function getUsernameAttribute()
-    {
-        return "r/" . $this->attributes['username'];
-    }
-
-
-    public function setNameAttribute($name)
-    {
-        $this->attributes['first_name'] = explode(' ', $name)[0];
-        $this->attributes['last_name'] = explode(' ', $name)[1];
     }
 
 }
