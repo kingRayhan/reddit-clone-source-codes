@@ -16,10 +16,11 @@ class CreateThreadsTable extends Migration
         Schema::create('threads', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->string('url')->nullable();
-            $table->string('text')->nullable();
+            $table->text('text')->nullable();
             $table->string('attachment')->nullable();
-            $table->enum('attachment_type', ['IMAGE', 'VIDEO']);
+            $table->enum('attachment_type', ['IMAGE', 'VIDEO'])->nullable();
             $table->enum('thread_type', ['TEXT', "LINK"]);
             $table->timestamps();
         });
