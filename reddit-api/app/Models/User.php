@@ -55,4 +55,9 @@ class User extends Authenticatable
         return $this->hasMany(Thread::class);
     }
 
+    public function getAvatarAttribute()
+    {
+        return 'https://www.gravatar.com/avatar/' . md5($this->attributes['email']);
+    }
+
 }
