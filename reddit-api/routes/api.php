@@ -33,3 +33,6 @@ Route::group(['prefix' => "auth"], function (){
     Route::post('user', [\App\Http\Controllers\AuthController::class, 'me'])->middleware('auth:api');
     Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->middleware('auth:api');
 });
+
+
+Route::apiResource('threads',\App\Http\Controllers\ThreadController::class);

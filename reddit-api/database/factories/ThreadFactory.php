@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Thread;
+use http\Client\Curl\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -33,13 +34,15 @@ class ThreadFactory extends Factory
                 "url" => $this->faker->url(),
                 "attachment" => $hasAttachment ? $this->faker->imageUrl() : null,
                 "attachment_type" => $hasAttachment ? "IMAGE" : null,
-                "thread_type" => "LINK"
+                "thread_type" => "LINK",
+                "user_id" => \App\Models\User::all()->random()->id
             ];
         } else { // text thread
             return [
                 "title" => $title,
                 "text" => $this->faker->paragraph(30),
-                "thread_type" => "TEXT"
+                "thread_type" => "TEXT",
+                "user_id" => \App\Models\User::all()->random()->id
             ];
         }
     }
