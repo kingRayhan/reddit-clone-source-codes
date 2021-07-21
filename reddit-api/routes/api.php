@@ -35,4 +35,8 @@ Route::group(['prefix' => "auth"], function (){
 });
 
 
-Route::apiResource('threads',\App\Http\Controllers\ThreadController::class);
+//Route::apiResource('threads',\App\Http\Controllers\ThreadController::class);
+
+
+Route::get('threads', [\App\Http\Controllers\ThreadController::class, 'index']);
+Route::get('threads/{thread:slug}', [\App\Http\Controllers\ThreadController::class, 'show']);

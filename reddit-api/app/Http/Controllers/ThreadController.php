@@ -13,4 +13,10 @@ class ThreadController extends Controller
         return Thread::orderBy('created_at', 'desc')->paginate(\request()->query('limit', 10));
     }
 
+    public function show(Thread $thread)
+    {
+        return $thread;
+//        return Thread::find($thread);
+    }
+
 }
