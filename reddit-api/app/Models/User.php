@@ -49,4 +49,10 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($TextPassword);
     }
 
+
+    public function threads()
+    {
+        return $this->hasMany(Thread::class);
+    }
+
 }

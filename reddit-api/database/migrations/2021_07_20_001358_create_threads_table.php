@@ -20,6 +20,9 @@ class CreateThreadsTable extends Migration
             $table->string('url')->nullable();
             $table->text('text')->nullable();
             $table->string('attachment')->nullable();
+
+            $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
+
             $table->enum('attachment_type', ['IMAGE', 'VIDEO'])->nullable();
             $table->enum('thread_type', ['TEXT', "LINK"]);
             $table->timestamps();

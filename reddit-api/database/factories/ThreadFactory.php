@@ -25,17 +25,19 @@ class ThreadFactory extends Factory
         $title = $this->faker->sentence(5);
 
         if (rand(0 , 1)) { // link thread
+
+            $hasAttachment = rand(0 , 1);
+
             return [
                 "title" => $title,
-                "slug" => Str::slug($title),
-                "attachment" => $this->faker->imageUrl(),
-                "attachment_type" => "IMAGE",
+                "url" => $this->faker->url(),
+                "attachment" => $hasAttachment ? $this->faker->imageUrl() : null,
+                "attachment_type" => $hasAttachment ? "IMAGE" : null,
                 "thread_type" => "LINK"
             ];
         } else { // text thread
             return [
                 "title" => $title,
-                "slug" => Str::slug($title),
                 "text" => $this->faker->paragraph(30),
                 "thread_type" => "TEXT"
             ];
