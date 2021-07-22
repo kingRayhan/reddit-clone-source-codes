@@ -10,6 +10,8 @@ class Thread extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'url', 'attachment', 'attachment_type', 'user_id', 'thread_type'];
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -25,6 +27,6 @@ class Thread extends Model
     public function setTitleAttribute($title)
     {
         $this->attributes['title'] = $title;
-        $this->attributes['slug'] = Str::slug($title) .'--'. time();
+        $this->attributes['slug'] = Str::slug($title) .'--'. Str::uuid();
     }
 }

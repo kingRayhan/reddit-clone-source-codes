@@ -36,6 +36,9 @@ Route::group(['prefix' => "auth"], function (){
 
 
 Route::apiResource('threads',\App\Http\Controllers\ThreadController::class);
+Route::post('threads/link', [\App\Http\Controllers\ThreadController::class, 'submitLink']);
+Route::post('threads/text', [\App\Http\Controllers\ThreadController::class, 'submitText']);
+
 
 
 //Route::get('threads', [\App\Http\Controllers\ThreadController::class, 'index']);

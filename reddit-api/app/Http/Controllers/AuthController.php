@@ -39,7 +39,7 @@ class AuthController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'login route',
+            'message' => 'You have been successfully logged in',
             "access_token" => auth()->user()->api_token
         ]);
     }
