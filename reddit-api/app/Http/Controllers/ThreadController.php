@@ -7,6 +7,7 @@ use App\Http\Requests\Thread\TextThreadStoreRequest;
 use App\Http\Resources\ThreadResource;
 use App\Models\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class ThreadController extends Controller
 {
@@ -43,7 +44,12 @@ class ThreadController extends Controller
 
     public function submitText(TextThreadStoreRequest $request)
     {
+        $thread = auth()->user()->threads()->create(
+            array_merge($request->only('title', 'text'), [
+                'thread_type' => "TEXT"
+            ]));
 
+        return new ThreadResource($thread);
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Thread;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TextThreadStoreRequest extends FormRequest
 {
@@ -24,7 +25,8 @@ class TextThreadStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['required', 'min:10', 'max:250'],
+            'text' => ['nullable', 'min:120']
         ];
     }
 }

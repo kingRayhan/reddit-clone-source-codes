@@ -10,7 +10,7 @@ class Thread extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'url', 'attachment', 'attachment_type', 'user_id', 'thread_type'];
+    protected $fillable = ['title', 'url', 'attachment', 'attachment_type', 'user_id', 'thread_type', 'text'];
 
     public function getRouteKeyName()
     {
