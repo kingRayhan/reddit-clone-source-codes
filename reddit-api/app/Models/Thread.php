@@ -24,9 +24,23 @@ class Thread extends Model
     }
 
 
-    public function setTitleAttribute($title)
+    public static function booted()
     {
-        $this->attributes['title'] = $title;
-        $this->attributes['slug'] = Str::slug($title) .'--'. Str::uuid();
+        parent::booted();
+
+        static::creating(function ($thread){
+            $thread->slug = Str::slug($thread->title) .'--'. Str::uuid();
+        });
+//
+//        static::deleted(function ($thread){
+//            $thread->user->notifyUser()
+//        });
     }
+
+
+//    public function setTitleAttribute($title)
+//    {
+//        $this->attributes['title'] = $title;
+//        $this->attributes['slug'] = Str::slug($title) .'--'. Str::uuid();
+//    }
 }

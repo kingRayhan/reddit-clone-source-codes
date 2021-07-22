@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Thread\LinkThreadStoreRequest;
+use App\Http\Requests\Thread\LinkThreadUpdateRequest;
 use App\Http\Requests\Thread\TextThreadStoreRequest;
+use App\Http\Requests\Thread\TextThreadUpdateRequest;
 use App\Http\Resources\ThreadResource;
 use App\Models\Thread;
 use Illuminate\Http\Request;
@@ -49,6 +51,29 @@ class ThreadController extends Controller
                 'thread_type' => "TEXT"
             ]));
 
+        return new ThreadResource($thread);
+    }
+
+
+    public function updateLink(Thread $thread, LinkThreadUpdateRequest $request)
+    {
+        if($thread->thread_type != 'LINK'){
+            abort(403, 'This is not a link thread');
+        }
+
+
+        $thread->update($request->only('title', 'url', 'attachment', 'attachment_type'));
+        return new ThreadResource($thread);
+    }
+
+
+    public function updateText(Thread $thread,  TextThreadUpdateRequest $request)
+    {
+        if($thread->thread_type != 'TEXT'){
+            abort(403, 'This is not a text thread');
+        }
+
+        $thread->update($request->only('title', 'text'));
         return new ThreadResource($thread);
     }
 
