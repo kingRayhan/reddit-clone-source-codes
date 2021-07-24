@@ -25,7 +25,7 @@ class AllLowerCase implements Rule
      */
     public function passes($attribute, $value)
     {
-        return strtolower($value) != $value;
+        return strtolower($value) == $value;
     }
 
     /**

@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Thread;
 
-use App\Rules\AllLowerCase;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class RegisterUserRequest extends FormRequest
+class TextThreadUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +24,8 @@ class RegisterUserRequest extends FormRequest
     public function rules()
     {
         return [
-            "username" => ["required", "alpha_dash", "min:3", new AllLowerCase(), Rule::unique('users')],
-            "email" => ["required", "email", Rule::unique('users')],
-            "password" => ["required", "alpha_num", "confirmed"]
+            'title' => ['nullable', 'min:10', 'max:250'],
+            'text' => ['nullable', 'min:120']
         ];
     }
 }
