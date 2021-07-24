@@ -77,4 +77,12 @@ class ThreadController extends Controller
         return new ThreadResource($thread);
     }
 
+    public function destroy(Thread $thread)
+    {
+        $thread->delete();
+        return response()->json([
+           'message' => 'Deleted successfully'
+        ]);
+    }
+
 }
